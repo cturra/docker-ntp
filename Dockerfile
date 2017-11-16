@@ -1,9 +1,10 @@
-FROM debian:stretch
+FROM debian:stretch-slim
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get -q update      \
- && apt-get -y --no-install-recommends install ntp
+RUN apt-get -q update                              \
+ && apt-get -y --no-install-recommends install ntp \
+ && rm -rf /var/lib/apt/lists/*
 
 # tweak some permissions to run as root
 RUN chgrp root /var/lib/ntp \
