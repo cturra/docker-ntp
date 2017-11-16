@@ -17,7 +17,7 @@ Pull and run -- it's this simple.
 # pull from docker hub
 $> docker pull cturra/ntp
 
-# run nzbget
+# run ntp
 $> docker run --name=ntp             \
               --restart=always       \
               --detach=true          \
