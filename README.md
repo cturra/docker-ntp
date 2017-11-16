@@ -1,5 +1,9 @@
 About this container
 ---
+[![Docker Build Status](https://img.shields.io/docker/build/cturra/ntp.svg)](https://hub.docker.com/r/cturra/dropbox/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/cturra/ntp.svg)](https://hub.docker.com/r/cturra/dropbox/)
+[![Apache licensed](https://img.shields.io/badge/license-Apache-blue.svg)](https://raw.githubusercontent.com/cturra/docker-dropbox/badges/LICENSE)
+
 This container runs NTP (Network Time Protocol) service. More about NTP can be found at:
 
   http://www.ntp.org
