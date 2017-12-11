@@ -4,7 +4,7 @@ About this container
 [![Docker Pulls](https://img.shields.io/docker/pulls/cturra/ntp.svg)](https://hub.docker.com/r/cturra/dropbox/)
 [![Apache licensed](https://img.shields.io/badge/license-Apache-blue.svg)](https://raw.githubusercontent.com/cturra/docker-dropbox/badges/LICENSE)
 
-This container runs NTP (Network Time Protocol) service. More about NTP can be found at:
+This container runs [OpenNTPD](http://www.openntpd.org/index.html) on [Alpine Linux](https://alpinelinux.org/). More about NTP can be found at:
 
   http://www.ntp.org
 
@@ -22,8 +22,8 @@ $> docker run --name=ntp             \
               --restart=always       \
               --detach=true          \
               --publish=123:123/udp  \
-              --cap-add SYS_RESOURCE \
-              --cap-add SYS_TIME     \
+              --cap-add=SYS_RESOURCE \
+              --cap-add=SYS_TIME     \
               cturra/ntp
 ```
 
@@ -56,6 +56,20 @@ Here is a sample output from my environment:
 
 ```
 $> ntpdate -q 10.13.13.9
-server 10.13.1.109, stratum 3, offset 0.010089, delay 0.02585
-17 Sep 15:20:52 ntpdate[14186]: adjust time server 10.13.1.109 offset 0.010089 sec
+server 10.13.13.9, stratum 3, offset 0.010089, delay 0.02585
+17 Sep 15:20:52 ntpdate[14186]: adjust time server 10.13.13.9 offset 0.010089 sec
+```
+
+If you see a message, like the following, it's likely the clock is not yet synchronized.
+```
+$> ntpdate -q 10.13.13.9
+server 10.13.13.9, stratum 16, offset 0.005689, delay 0.02837
+11 Dec 09:47:53 ntpdate[26030]: no server suitable for synchronization found
+```
+
+To see details on the ntpd status, you can check with the below command on your
+docker host:
+```
+$> docker exec ntp ntpctl -s status
+4/4 peers valid, clock synced, stratum 2
 ```

@@ -1,17 +1,14 @@
-FROM debian:stretch-slim
+FROM alpine:latest
 
-ENV DEBIAN_FRONTEND noninteractive
+RUN apk update       \
+ && apk add openntpd \
+ && rm -rf /var/cache/apk/*
 
-RUN apt-get -q update                              \
- && apt-get -y --no-install-recommends install ntp \
- && rm -rf /var/lib/apt/lists/*
-
-# tweak some permissions to run as root
-RUN chgrp root /var/lib/ntp \
- && chmod g+w  /var/lib/ntp
+# use custom ntpd config file
+COPY assets/ntpd.conf /etc/ntpd.conf
 
 # ntp port
 EXPOSE 123/udp
 
 # start ntpd in the foreground
-ENTRYPOINT [ "/usr/sbin/ntpd", "-g", "-n" ]
+ENTRYPOINT [ "/usr/sbin/ntpd", "-v", "-d", "-s" ]
