@@ -27,11 +27,17 @@ $> docker run --name=ntp             \
               cturra/ntp
 ```
 
-# Load your own NTP config file into the container
+Load your own NTP config file into the container
+---
 
-Add `-v /path/to/folder/containing/my_config_file:/data`
+Add 
 
-NB: This way, one can save the NTP drift file accross container restart by adding 
+```-v /path/to/folder/containing/my_config_file:/data```
+
+to the command above. 
+
+
+Note that this way, one can also save the NTP drift file accross container restarts by adding 
 
 ```driftfile /data/drift```
 
