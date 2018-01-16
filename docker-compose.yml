@@ -1,0 +1,20 @@
+version: '2'
+services:
+
+  docker-ntp:
+    image: nicoinn/docker-ntp
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: docker-ntp
+    ports:
+      - 123:123/udp
+    
+    ### Edit and uncomment the line below to load your own ntpd.conf file. 
+    #volumes:
+      #- /path/to/folder/with_my_ntpd.conf:/data
+
+    restart: always
+    cap_add:
+      - SYS_RESOURCE
+      - SYS_TIME
