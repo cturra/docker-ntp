@@ -1,8 +1,8 @@
 About this container
 ---
-[![Docker Build Status](https://img.shields.io/docker/build/cturra/ntp.svg)](https://hub.docker.com/r/cturra/dropbox/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/cturra/ntp.svg)](https://hub.docker.com/r/cturra/dropbox/)
-[![Apache licensed](https://img.shields.io/badge/license-Apache-blue.svg)](https://raw.githubusercontent.com/cturra/docker-dropbox/badges/LICENSE)
+[![Docker Build Status](https://img.shields.io/docker/build/nicoinn/docker-ntp.svg)](https://hub.docker.com/r/nicoinn/docker-ntp/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nicoinn/docker-ntp.svg)](https://hub.docker.com/r/nicoinn/docker-ntp/)
+[![Apache licensed](https://img.shields.io/badge/license-Apache-blue.svg)]
 
 This container runs [OpenNTPD](http://www.openntpd.org/index.html) on [Alpine Linux](https://alpinelinux.org/). More about NTP can be found at:
 
@@ -49,11 +49,17 @@ $> docker run --name=ntp             \
               nicoinn/docker-ntp
 ```
 
-# Load your own NTP config file into the container
+Load your own NTP config file into the container
+---
 
-Add `-v /path/to/folder/containing/my_config_file:/data`
+Add 
 
-NB: This way, one can save the NTP drift file accross container restart by adding 
+```-v /path/to/folder/containing/my_config_file:/data```
+
+to the command above. 
+
+
+Note that this way, one can also save the NTP drift file accross container restarts by adding 
 
 ```driftfile /data/drift```
 
