@@ -8,23 +8,45 @@ This container runs [OpenNTPD](http://www.openntpd.org/index.html) on [Alpine Li
 
   http://www.ntp.org
 
+Using Docker-compose
+---
 
-Running from Docker Hub
+Download the docker-compose.yml from this repository and place it in a clean directory.
+
+
+Running Docker-ntp as a service in the background:
+
+$> docker-compose up -d
+
+Manually pull the image from Docker hub (for example, to update to a newer version):
+
+$> docker-compose pull
+
+Build the image locally (useful to test changes to the Dockerfile):
+
+$> docker-compose build
+
+
+Check and edit the content of docker-compose.yml to load your own ntpd.conf config file. 
+
+
+
+Running manually without Docker-compose
 ---
 Pull and run -- it's this simple.
 
 ```
-# pull from docker hub
-$> docker pull cturra/ntp
+# Pull from docker hub
+$> docker pull nicoinn/docker-ntp
 
-# run ntp
+# Run docker-ntp
 $> docker run --name=ntp             \
               --restart=always       \
               --detach=true          \
               --publish=123:123/udp  \
               --cap-add=SYS_RESOURCE \
               --cap-add=SYS_TIME     \
-              cturra/ntp
+              nicoinn/docker-ntp
 ```
 
 # Load your own NTP config file into the container
@@ -36,21 +58,6 @@ NB: This way, one can save the NTP drift file accross container restart by addin
 ```driftfile /data/drift```
 
 into your ntpd.conf file. 
-
-
-
-Building and Running with Docker Engine
----
-Using the vars file in this git repo, you can update any of the variables to reflect your
-environment. Once updated, simply execute the build then run scripts.
-
-```
-# build ntp
-$> ./build.sh
-
-# run ntp
-$> ./run.sh
-```
 
 
 Test NTP
@@ -81,6 +88,6 @@ server 10.13.13.9, stratum 16, offset 0.005689, delay 0.02837
 To see details on the ntpd status, you can check with the below command on your
 docker host:
 ```
-$> docker exec ntp ntpctl -s status
+$> docker exec docker-ntp ntpctl -s status
 4/4 peers valid, clock synced, stratum 2
 ```
