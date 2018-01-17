@@ -42,6 +42,7 @@ $> docker-compose up -d ntp
 
 # (optional) check the ntp logs
 $> docker-compose logs ntp
+```
 
 
 Building and Running with Docker Engine
