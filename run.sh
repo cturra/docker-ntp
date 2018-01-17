@@ -14,7 +14,7 @@ function check_container() {
 function start_container() {
   $DOCKER run --name=${CONTAINER_NAME}         \
               --detach=true                    \
-              --restart=always                 \
+              --restart=on-failure:2           \
               --publish=123:123/udp            \
               ${DOCKER_OPTS}                   \
               ${IMAGE_NAME}:latest > /dev/null

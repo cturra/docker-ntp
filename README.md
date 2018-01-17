@@ -19,13 +19,29 @@ $> docker pull cturra/ntp
 
 # run ntp
 $> docker run --name=ntp             \
-              --restart=always       \
+              --restart=on-failure:2 \
               --detach=true          \
               --publish=123:123/udp  \
               --cap-add=SYS_RESOURCE \
               --cap-add=SYS_TIME     \
               cturra/ntp
 ```
+
+
+Building and Running with Docker Compose
+---
+Using the docker-compose.yml file included in this git repo, you can build the container yourself (should you choose to).
+*Note: this docker-compose files uses the `3.4` compose format, which requires Docker Engine release 17.09.0+
+
+```
+# build ntp
+$> docker-compose build ntp
+
+# run ntp
+$> docker-compose up -d ntp
+
+# (optional) check the ntp logs
+$> docker-compose logs ntp
 
 
 Building and Running with Docker Engine
