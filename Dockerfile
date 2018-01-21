@@ -1,5 +1,6 @@
 FROM alpine:latest
 
+# install openntp
 RUN apk add --no-cache openntpd
 
 # use custom ntpd config file
