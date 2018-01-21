@@ -1,8 +1,6 @@
 FROM alpine:latest
 
-RUN apk update       \
- && apk add openntpd \
- && rm -rf /var/cache/apk/*
+RUN apk add --no-cache openntpd
 
 # use custom ntpd config file
 COPY assets/ntpd.conf /etc/ntpd.conf
