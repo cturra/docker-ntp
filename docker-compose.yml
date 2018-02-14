@@ -9,5 +9,6 @@ services:
     ports:
       - 123:123/udp
     cap_add:
+      - SYS_NICE
       - SYS_RESOURCE
       - SYS_TIME
