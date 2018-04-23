@@ -19,7 +19,7 @@ $> docker pull cturra/ntp
 
 # run ntp
 $> docker run --name=ntp             \
-              --restart=on-failure:2 \
+              --restart=always       \
               --detach=true          \
               --publish=123:123/udp  \
               --cap-add=SYS_NICE     \

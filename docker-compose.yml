@@ -5,7 +5,7 @@ services:
     build: .
     image: cturra/ntp:latest
     container_name: ntp
-    restart: on-failure:2
+    restart: always
     ports:
       - 123:123/udp
     cap_add:
