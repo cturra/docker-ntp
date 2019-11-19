@@ -60,6 +60,29 @@ $> ./run.sh
 ```
 
 
+Configure NTP Servers
+---
+By default, this container uses CloudFlare's time server (time.cloudflare.com). If you'd
+like to use one or more different NTP server(s), you can pass this container an `NTP_SERVERS`
+environment variable. This can be done by updating the [./vars](vars), [./docker-compose.yml](docker-compose)
+files or manually passing `--env=NTP_SERVERS="..."` to `docker run`.
+
+Below are some examples of how to configure common NTP Servers.
+
+Do note, to configure more than one server, you must use a comma delimited list WITHOUT spaces.
+
+```
+# (default) cloudflare
+NTP_SERVERS="time.cloudflare.com"
+
+# google
+NTP_SEVERS="time1.google.com,time2.google.com,time3.google.com,time4.google.com"
+
+# alibaba
+NTP_SERVERS="ntp1.aliyun.com,ntp2.aliyun.com,ntp3.aliyun.com,ntp4.aliyun.com"
+```
+
+
 Test NTP
 ---
 From any machine that has `ntpdate` you can query your new NTP container with the follow

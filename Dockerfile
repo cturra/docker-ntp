@@ -3,8 +3,8 @@ FROM alpine:latest
 # install openntp
 RUN apk add --no-cache openntpd
 
-# use custom ntpd config file
-COPY assets/ntpd.conf /etc/ntpd.conf
+# script to configure/startup ntpd
+COPY assets/startup.sh /opt/startup.sh
 
 # ntp port
 EXPOSE 123/udp
@@ -13,4 +13,4 @@ EXPOSE 123/udp
 HEALTHCHECK CMD ntpctl -s status || exit 1
 
 # start ntpd in the foreground
-ENTRYPOINT [ "/usr/sbin/ntpd", "-v", "-d", "-s" ]
+ENTRYPOINT [ "/bin/sh", "/opt/startup.sh" ]
