@@ -112,5 +112,14 @@ To see details on the ntpd status, you can check with the below command on your
 docker host:
 ```
 $> docker exec ntp ntpctl -s status
-4/4 peers valid, clock synced, stratum 2
+1/1 peers valid, clock synced, stratum 4
+```
+
+Here is how you can see a peer list to verify the state of each ntp server configured:
+```
+$> docker exec ntp ntpctl -s peers
+peer
+   wt tl st  next  poll          offset       delay      jitter
+162.159.200.1 time.cloudflare.com
+ *  1 10  3   26s   32s    -44088.078ms    14.829ms     2.924ms
 ```
