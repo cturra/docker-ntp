@@ -64,7 +64,7 @@ Configure NTP Servers
 ---
 By default, this container uses CloudFlare's time server (time.cloudflare.com). If you'd
 like to use one or more different NTP server(s), you can pass this container an `NTP_SERVERS`
-environment variable. This can be done by updating the [./vars](vars), [./docker-compose.yml](docker-compose)
+environment variable. This can be done by updating the [vars](vars), [docker-compose.yml](docker-compose.yml)
 files or manually passing `--env=NTP_SERVERS="..."` to `docker run`.
 
 Below are some examples of how to configure common NTP Servers.
