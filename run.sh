@@ -16,6 +16,7 @@ function start_container() {
               --detach=true                    \
               --restart=always                 \
               --publish=123:123/udp            \
+              --env=NTP_SERVERS=${NTP_SERVERS} \
               ${DOCKER_OPTS}                   \
               ${IMAGE_NAME}:latest > /dev/null
 }

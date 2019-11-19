@@ -60,6 +60,29 @@ $> ./run.sh
 ```
 
 
+Configure NTP Servers
+---
+By default, this container uses CloudFlare's time server (time.cloudflare.com). If you'd
+like to use one or more different NTP server(s), you can pass this container an `NTP_SERVERS`
+environment variable. This can be done by updating the [vars](vars), [docker-compose.yml](docker-compose.yml)
+files or manually passing `--env=NTP_SERVERS="..."` to `docker run`.
+
+Below are some examples of how to configure common NTP Servers.
+
+Do note, to configure more than one server, you must use a comma delimited list WITHOUT spaces.
+
+```
+# (default) cloudflare
+NTP_SERVERS="time.cloudflare.com"
+
+# google
+NTP_SEVERS="time1.google.com,time2.google.com,time3.google.com,time4.google.com"
+
+# alibaba
+NTP_SERVERS="ntp1.aliyun.com,ntp2.aliyun.com,ntp3.aliyun.com,ntp4.aliyun.com"
+```
+
+
 Test NTP
 ---
 From any machine that has `ntpdate` you can query your new NTP container with the follow
@@ -89,5 +112,14 @@ To see details on the ntpd status, you can check with the below command on your
 docker host:
 ```
 $> docker exec ntp ntpctl -s status
-4/4 peers valid, clock synced, stratum 2
+1/1 peers valid, clock synced, stratum 4
+```
+
+Here is how you can see a peer list to verify the state of each ntp server configured:
+```
+$> docker exec ntp ntpctl -s peers
+peer
+   wt tl st  next  poll          offset       delay      jitter
+162.159.200.1 time.cloudflare.com
+ *  1 10  3   26s   32s    -44088.078ms    14.829ms     2.924ms
 ```

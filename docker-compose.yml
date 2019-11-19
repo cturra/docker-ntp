@@ -12,3 +12,5 @@ services:
       - SYS_NICE
       - SYS_RESOURCE
       - SYS_TIME
+    environment:
+      - NTP_SERVERS=time.cloudflare.com
