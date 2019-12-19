@@ -67,10 +67,9 @@ like to use one or more different NTP server(s), you can pass this container an 
 environment variable. This can be done by updating the [vars](vars), [docker-compose.yml](docker-compose.yml)
 files or manually passing `--env=NTP_SERVERS="..."` to `docker run`.
 
-Below are some examples of how to configure common NTP Servers. If you're using the `docker-compose`
-configuration, do not use quotes (`"`) around the ntp server list.
+Below are some examples of how to configure common NTP Servers.
 
-Do note, to configure more than one server, you must use a comma delimited list WITHOUT spaces. 
+Do note, to configure more than one server, you must use a comma delimited list WITHOUT spaces.
 
 ```
 # (default) cloudflare
