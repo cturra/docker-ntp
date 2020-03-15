@@ -8,7 +8,7 @@ IMAGE_NAME="cturra/ntp"
 CONTAINER_NAME="ntp"
 
 # any additional docker run options you may want.
-DOCKER_OPTS="--cap-add SYS_NICE --cap-add SYS_RESOURCE --cap-add SYS_TIME"
+DOCKER_OPTS="--cap-add SYS_TIME"
 
 # (optional) define ntp server(s) to use
 # if none are provided a default is chosen
