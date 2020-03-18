@@ -1,16 +1,16 @@
 FROM alpine:latest
 
-# install openntp
-RUN apk add --no-cache openntpd
+# install chrony
+RUN apk add --no-cache chrony
 
-# script to configure/startup ntpd
+# script to configure/startup chrony (ntp)
 COPY assets/startup.sh /opt/startup.sh
 
 # ntp port
 EXPOSE 123/udp
 
 # let docker know how to test container health
-HEALTHCHECK CMD ntpctl -s status || exit 1
+HEALTHCHECK CMD chronyc tracking || exit 1
 
-# start ntpd in the foreground
+# start chronyd in the foreground
 ENTRYPOINT [ "/bin/sh", "/opt/startup.sh" ]
