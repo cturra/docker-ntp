@@ -29,7 +29,8 @@ if [ -z ${NTP_SERVERS} ]; then
 elif [ $(echo ${#NTP_SERVERS}) > 0 ]; then
   IFS=","
   for N in $NTP_SERVERS; do
-    echo "server $N iburst" >> ${CHRONY_CONF_FILE}
+    # strip any quotes found before or after ntp server
+    echo "server "${N//\"}" iburst" >> ${CHRONY_CONF_FILE}
   done
 
 # NTP_SERVERS environment variable is present, but doesn't contain ntp servers, so
