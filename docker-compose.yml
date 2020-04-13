@@ -3,14 +3,12 @@ version: '3.4'
 services:
   ntp:
     build: .
-    image: cturra/ntp:latest
+    image: andreasfaerber/cturra-ntp:latest
     container_name: ntp
     restart: always
     ports:
       - 123:123/udp
     cap_add:
-      - SYS_NICE
-      - SYS_RESOURCE
       - SYS_TIME
     environment:
       - NTP_SERVERS=time.cloudflare.com
