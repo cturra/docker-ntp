@@ -9,6 +9,9 @@ mv -f /etc/chrony/chrony.conf /etc/chrony/chrony.conf.bak
 # update permissions on /var/lib/chrony directory
 chown -R chrony:chrony /var/lib/chrony
 
+# remove previous pid file if it exist
+rm -f /var/run/chrony/chronyd.pid
+
 ## dynamically populate chrony config file.
 {
   echo "# https://github.com/cturra/docker-ntp"
