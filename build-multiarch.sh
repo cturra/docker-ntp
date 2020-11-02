@@ -28,5 +28,3 @@ else
                        --tag ${IMAGE_NAME} \
                        --push .
 fi
-
-
