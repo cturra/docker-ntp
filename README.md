@@ -1,3 +1,16 @@
+## Supported Architectures:
+
+Architectures officially supported by this Docker container:
+
+![Linux x86-64](//img.shields.io/badge/linux/amd64-yellowgreen)
+![ARMv8 64-bit](//img.shields.io/badge/linux/arm64-yellowgreen)
+![IBM POWER8](//img.shields.io/badge/linux/ppc64le-yellowgreen)
+![IBM Z Systems](//img.shields.io/badge/linux/s390x-yellowgreen)
+![Linux x86/i686](//img.shields.io/badge/linux/386-yellowgreen)
+![ARMv7 32-bit](//img.shields.io/badge/linux/arm/v7-yellowgreen)
+![ARMv6 32-bit](//img.shields.io/badge/linux/arm/v6-yellowgreen)
+
+
 ## About this container
 
 [![Docker Build Status](https://img.shields.io/docker/build/cturra/ntp.svg)](https://hub.docker.com/r/cturra/ntp/)
