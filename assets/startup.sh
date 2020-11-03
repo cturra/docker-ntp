@@ -21,23 +21,15 @@ rm -f /var/run/chrony/chronyd.pid
 
 
 # NTP_SERVERS environment variable is not present, so populate with default server
-if [ -z ${NTP_SERVERS} ]; then
-  echo "server ${DEFAULT_NTP} iburst" >> ${CHRONY_CONF_FILE}
-
-# check if list of ntp servers provided in NTP_SERVERS environment variable
-# are present and is of greater than length 0.
-elif [ $(echo ${#NTP_SERVERS}) > 0 ]; then
-  IFS=","
-  for N in $NTP_SERVERS; do
-    # strip any quotes found before or after ntp server
-    echo "server "${N//\"}" iburst" >> ${CHRONY_CONF_FILE}
-  done
-
-# NTP_SERVERS environment variable is present, but doesn't contain ntp servers, so
-# populate with a default server.
-else
-  echo "server ${DEFAULT_NTP} iburst" >> ${CHRONY_CONF_FILE}
+if [ -z "${NTP_SERVERS}" ]; then
+  NTP_SERVERS="${DEFAULT_NTP}"
 fi
+
+IFS=","
+for N in $NTP_SERVERS; do
+  # strip any quotes found before or after ntp server
+  echo "server "${N//\"}" iburst" >> ${CHRONY_CONF_FILE}
+done
 
 # final bits for the config file
 {
