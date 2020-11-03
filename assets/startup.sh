@@ -3,9 +3,6 @@
 DEFAULT_NTP="time.cloudflare.com"
 CHRONY_CONF_FILE="/etc/chrony/chrony.conf"
 
-# move aside original config file
-mv -f /etc/chrony/chrony.conf /etc/chrony/chrony.conf.bak
-
 # update permissions on /var/lib/chrony directory
 chown -R chrony:chrony /var/lib/chrony
 

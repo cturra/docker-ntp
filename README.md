@@ -38,6 +38,7 @@ $> docker run --name=ntp             \
               --detach=true          \
               --publish=123:123/udp  \
               --cap-add=SYS_TIME     \
+              --read-only            \
               cturra/ntp
 ```
 
