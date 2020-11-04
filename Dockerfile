@@ -16,4 +16,4 @@ HEALTHCHECK CMD chronyc tracking || exit 1
 VOLUME /etc/chrony /var/lib/chrony /var/run/chrony
 
 # start chronyd in the foreground
-ENTRYPOINT [ "/opt/startup.sh" ]
+ENTRYPOINT [ "/bin/sh", "/opt/startup.sh" ]
