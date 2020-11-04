@@ -1,8 +1,7 @@
 FROM alpine:latest
 
 # install chrony
-RUN apk add --no-cache chrony && \
-    rm /etc/chrony/chrony.conf
+RUN apk add --no-cache chrony
 
 # script to configure/startup chrony (ntp)
 COPY assets/startup.sh /opt/startup.sh
@@ -13,7 +12,7 @@ EXPOSE 123/udp
 # let docker know how to test container health
 HEALTHCHECK CMD chronyc tracking || exit 1
 
-VOLUME /etc/chrony /var/lib/chrony /var/run/chrony
+VOLUME /etc/chrony /run/chrony /var/lib/chrony
 
 # start chronyd in the foreground
 ENTRYPOINT [ "/bin/sh", "/opt/startup.sh" ]
