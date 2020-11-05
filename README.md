@@ -33,12 +33,23 @@ Pull and run -- it's this simple.
 $> docker pull cturra/ntp
 
 # run ntp
-$> docker run --name=ntp             \
-              --restart=always       \
-              --detach=true          \
-              --publish=123:123/udp  \
-              --cap-add=SYS_TIME     \
-              --read-only            \
+$> docker run --name=ntp            \
+              --restart=always      \
+              --detach              \
+              --publish=123:123/udp \
+              --cap-add=SYS_TIME    \
+              cturra/ntp
+
+# OR run ntp with higher security (default behaviour of run.sh and docker-compose).
+$> docker run --name=ntp                           \
+              --restart=always                     \
+              --detach                             \
+              --publish=123:123/udp                \
+              --cap-add=SYS_TIME                   \
+              --read-only                          \
+              --tmpfs=/etc/chrony:rw,mode=1750     \
+              --tmpfs=/run/chrony:rw,mode=1750     \
+              --tmpfs=/var/lib/chrony:rw,mode=1750 \
               cturra/ntp
 ```
 

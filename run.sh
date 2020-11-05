@@ -12,13 +12,17 @@ function check_container() {
 
 # function to start new docker container
 function start_container() {
-  $DOCKER run --name=${CONTAINER_NAME}         \
-              --detach=true                    \
-              --restart=always                 \
-              --publish=123:123/udp            \
-              --env=NTP_SERVERS=${NTP_SERVERS} \
-              --read-only                      \
-              ${DOCKER_OPTS}                   \
+  $DOCKER run --name=${CONTAINER_NAME}             \
+              --detach=true                        \
+              --restart=always                     \
+              --publish=123:123/udp                \
+              --env=NTP_SERVERS=${NTP_SERVERS}     \
+              --cap-add=SYS_TIME                   \
+              --read-only=true                     \
+              --tmpfs=/etc/chrony:rw,mode=1750     \
+              --tmpfs=/run/chrony:rw,mode=1750     \
+              --tmpfs=/var/lib/chrony:rw,mode=1750 \
+              ${DOCKER_OPTS}                       \
               ${IMAGE_NAME}:latest > /dev/null
 }
 

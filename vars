@@ -7,11 +7,11 @@
 IMAGE_NAME="cturra/ntp"
 CONTAINER_NAME="ntp"
 
-# any additional docker run options you may want.
-DOCKER_OPTS="--cap-add SYS_TIME"
-
 # (optional) define ntp server(s) to use
 # if none are provided a default is chosen
 # ntp server list must: be comma delimited and NOT contain spaces
 # NTP_SERVERS="time1.google.com,time2.google.com,time3.google.com,time4.google.com"
 NTP_SERVERS="time.cloudflare.com"
+
+# (optional) additional docker run options you may want
+DOCKER_OPTS=""
