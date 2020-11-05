@@ -7,9 +7,6 @@ CHRONY_CONF_FILE="/etc/chrony/chrony.conf"
 chown -R chrony:chrony /run/chrony /var/lib/chrony
 chmod o-rx /run/chrony
 
-## remove chrony config file.
-rm ${CHRONY_CONF_FILE}
-
 # remove previous pid file if it exist
 rm -f /var/run/chrony/chronyd.pid
 
