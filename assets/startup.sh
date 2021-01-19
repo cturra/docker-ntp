@@ -4,6 +4,7 @@ DEFAULT_NTP="time.cloudflare.com"
 CHRONY_CONF_FILE="/etc/chrony/chrony.conf"
 
 # update permissions on chrony directories
+mkdir -p /run/chrony
 chown -R chrony:chrony /run/chrony /var/lib/chrony
 chmod o-rx /run/chrony
 
