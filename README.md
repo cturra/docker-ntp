@@ -1,6 +1,6 @@
 ## Supported Architectures:
 
-Architectures officially supported by this Docker container:
+Architectures officially supported by this Docker container
 
 ![Linux x86-64](https://img.shields.io/badge/linux/amd64-yellowgreen)
 ![ARMv8 64-bit](https://img.shields.io/badge/linux/arm64-yellowgreen)
@@ -37,7 +37,6 @@ $> docker run --name=ntp            \
               --restart=always      \
               --detach              \
               --publish=123:123/udp \
-              --cap-add=SYS_TIME    \
               cturra/ntp
 
 # OR run ntp with higher security (default behaviour of run.sh and docker-compose).
@@ -45,7 +44,6 @@ $> docker run --name=ntp                           \
               --restart=always                     \
               --detach                             \
               --publish=123:123/udp                \
-              --cap-add=SYS_TIME                   \
               --read-only                          \
               --tmpfs=/etc/chrony:rw,mode=1750     \
               --tmpfs=/run/chrony:rw,mode=1750     \

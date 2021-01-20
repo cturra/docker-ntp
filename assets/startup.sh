@@ -3,12 +3,18 @@
 DEFAULT_NTP="time.cloudflare.com"
 CHRONY_CONF_FILE="/etc/chrony/chrony.conf"
 
-# update permissions on chrony directories
-chown -R chrony:chrony /run/chrony /var/lib/chrony
-chmod o-rx /run/chrony
+# confirm correct permissions on chrony run directory
+if [ -d /run/chrony ]; then
+  chown -R chrony:chrony /run/chrony
+  chmod o-rx /run/chrony
+  # remove previous pid file if it exist
+  rm -f /var/run/chrony/chronyd.pid
+fi
 
-# remove previous pid file if it exist
-rm -f /var/run/chrony/chronyd.pid
+# confirm correct permissions on chrony variable state directory
+if [ -d /var/lib/chrony ]; then
+  chown -R chrony:chrony /var/lib/chrony
+fi
 
 ## dynamically populate chrony config file.
 {
@@ -42,4 +48,4 @@ done
 } >> ${CHRONY_CONF_FILE}
 
 ## startup chronyd in the foreground
-exec /usr/sbin/chronyd -d -s
+exec /usr/sbin/chronyd -d -x
