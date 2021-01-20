@@ -48,4 +48,4 @@ done
 } >> ${CHRONY_CONF_FILE}
 
 ## startup chronyd in the foreground
-exec /usr/sbin/chronyd -d -s -x
+exec /usr/sbin/chronyd -d -x

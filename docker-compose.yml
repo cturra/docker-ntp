@@ -8,8 +8,6 @@ services:
     restart: always
     ports:
       - 123:123/udp
-    cap_add:
-      - SYS_TIME
     read_only: true
     tmpfs:
       - /etc/chrony:rw,mode=1750
