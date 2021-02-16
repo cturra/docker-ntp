@@ -1,30 +1,31 @@
-## Supported Architectures:
-
-Architectures officially supported by this Docker container
-
-![Linux x86-64](https://img.shields.io/badge/linux/amd64-yellowgreen)
-![ARMv8 64-bit](https://img.shields.io/badge/linux/arm64-yellowgreen)
-![IBM POWER8](https://img.shields.io/badge/linux/ppc64le-yellowgreen)
-![IBM Z Systems](https://img.shields.io/badge/linux/s390x-yellowgreen)
-![Linux x86/i686](https://img.shields.io/badge/linux/386-yellowgreen)
-![ARMv7 32-bit](https://img.shields.io/badge/linux/arm/v7-yellowgreen)
-![ARMv6 32-bit](https://img.shields.io/badge/linux/arm/v6-yellowgreen)
-
-
 ## About this container
 
-[![Docker Build Status](https://img.shields.io/docker/build/cturra/ntp.svg)](https://hub.docker.com/r/cturra/ntp/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/cturra/ntp.svg)](https://hub.docker.com/r/cturra/ntp/)
-[![Apache licensed](https://img.shields.io/badge/license-Apache-blue.svg)](https://raw.githubusercontent.com/cturra/docker-ntp/master/LICENSE)
+[![Docker Pulls](https://img.shields.io/docker/pulls/cturra/ntp.svg?logo=docker&label=pulls&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://hub.docker.com/r/cturra/ntp/)
+[![Docker Stars](https://img.shields.io/docker/stars/cturra/ntp.svg?logo=docker&label=stars&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://hub.docker.com/r/cturra/ntp/)
+[![GitHub Stars](https://img.shields.io/github/stars/cturra/docker-ntp.svg?logo=github&label=stars&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://github.com/cturra/docker-ntp)
+[![Apache licensed](https://img.shields.io/badge/license-Apache-blue.svg?logo=apache&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://raw.githubusercontent.com/cturra/docker-ntp/master/LICENSE)
 
-This container runs [chrony](https://chrony.tuxfamily.org/) on [Alpine Linux](https://alpinelinux.org/). More about chrony can be found at:
+This container runs [chrony](https://chrony.tuxfamily.org/) on [Alpine Linux](https://alpinelinux.org/).
 
- * https://chrony.tuxfamily.org/
+[chrony](https://chrony.tuxfamily.org) is a versatile implementation of the Network Time Protocol (NTP). It can synchronise the system clock with NTP servers, reference clocks (e.g. GPS receiver), and manual input using wristwatch and keyboard. It can also operate as an NTPv4 (RFC 5905) server and peer to provide a time service to other computers in the network.
+
+
+## Supported Architectures
+
+Architectures officially supported by this Docker container. Simply pulling this container from [Docker Hub](https://hub.docker.com/r/cturra/ntp) should retrieve the correct image for your architecture.
+
+![Linux x86-64](https://img.shields.io/badge/linux/amd64-green?style=flat-square)
+![ARMv8 64-bit](https://img.shields.io/badge/linux/arm64-green?style=flat-square)
+![IBM POWER8](https://img.shields.io/badge/linux/ppc64le-green?style=flat-square)
+![IBM Z Systems](https://img.shields.io/badge/linux/s390x-green?style=flat-square)
+![Linux x86/i686](https://img.shields.io/badge/linux/386-green?style=flat-squareg)
+![ARMv7 32-bit](https://img.shields.io/badge/linux/arm/v7-green?style=flat-square)
+![ARMv6 32-bit](https://img.shields.io/badge/linux/arm/v6-green?style=flat-square)
 
 
 ## How to Run this container
 
-### Running from Docker Hub
+### With the Docker CLI
 
 Pull and run -- it's this simple.
 
@@ -52,7 +53,7 @@ $> docker run --name=ntp                           \
 ```
 
 
-### Building and Running with Docker Compose
+### With Docker Compose
 
 Using the docker-compose.yml file included in this git repo, you can build the container yourself (should you choose to).
 *Note: this docker-compose files uses the `3.4` compose format, which requires Docker Engine release 17.09.0+
@@ -72,7 +73,7 @@ $> docker-compose logs ntp
 ```
 
 
-### Building and Running with Docker Engine
+### From a CLI
 
 Using the vars file in this git repo, you can update any of the variables to reflect your
 environment. Once updated, simply execute the build then run scripts.
