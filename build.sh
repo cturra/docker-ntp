@@ -4,6 +4,10 @@
 source vars
 
 DOCKER=$(which docker)
+BUILD_DATE=$(date '+%Y-%m-%dT%H:%M:%S%:z')
 
 # build image
-$DOCKER build --pull --tag ${IMAGE_NAME} .
+$DOCKER build --pull                               \
+              --tag ${IMAGE_NAME}                  \
+              --build-arg BUILD_DATE=${BUILD_DATE} \
+              .
