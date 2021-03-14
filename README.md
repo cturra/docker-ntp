@@ -178,3 +178,7 @@ Name/IP Address            NP  NR  Span  Frequency  Freq Skew  Offset  Std Dev
 time.cloudflare.com        35  18  139m     +0.014      0.141   -662us   530us
 time1.google.com           33  13  128m     -0.007      0.138   +318us   460us
 ```
+
+
+---
+<a href="https://www.buymeacoffee.com/cturra" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>
