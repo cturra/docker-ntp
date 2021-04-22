@@ -5,7 +5,7 @@ source vars
 
 DOCKER=$(which docker)
 BUILD_INST=${CONTAINER_NAME}"-builder"
-BUILD_DATE=$(date '+%Y-%m-%dT%H:%M:%S%:z')
+BUILD_DATE=$(date -u '+%Y-%m-%dT%H:%M:%S%z')
 
 # MODE options:
 #  - dry_run: (default) build images, but DO NOT push to dockerhub
