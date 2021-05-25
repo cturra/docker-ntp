@@ -109,6 +109,12 @@ NTP_SERVERS="time1.google.com,time2.google.com,time3.google.com,time4.google.com
 NTP_SERVERS="ntp1.aliyun.com,ntp2.aliyun.com,ntp3.aliyun.com,ntp4.aliyun.com"
 ```
 
+If you're interested in a public list of stratum 1 servers, you can have a look at the following list.
+Do make sure to verify the ntp server is active as this list does appaer to have some no longer active
+servers.
+
+ * https://www.advtimesync.com/docs/manual/stratum1.html
+
 
 ## Testing your NTP Container
 
@@ -179,6 +185,23 @@ time.cloudflare.com        35  18  139m     +0.014      0.141   -662us   530us
 time1.google.com           33  13  128m     -0.007      0.138   +318us   460us
 ```
 
+
+Are you seeing messages like these and wondering what is going on?
+```
+$ docker logs -f ntps
+[...]
+2021-05-25T18:41:40Z System clock wrong by -2.535004 seconds
+2021-05-25T18:41:40Z Could not step system clock
+2021-05-25T18:42:47Z System clock wrong by -2.541034 seconds
+2021-05-25T18:42:47Z Could not step system clock
+```
+
+Good question! Since `chronyd` is running with the `-x` flag, it will not try to control
+the system (container host) clock. This of course is necessary because the process does not
+have priviledge (for good reason) to modify the clock on the system.
+
+Like any host on your network, simply use your preferred ntp client to pull the time from
+the running ntp container on your container host.
 
 ---
 <a href="https://www.buymeacoffee.com/cturra" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>

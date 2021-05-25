@@ -40,6 +40,7 @@ done
 
 # final bits for the config file
 {
+  echo
   echo "driftfile /var/lib/chrony/chrony.drift"
   echo "makestep 0.1 3"
   echo "rtcsync"
@@ -48,4 +49,4 @@ done
 } >> ${CHRONY_CONF_FILE}
 
 ## startup chronyd in the foreground
-exec /usr/sbin/chronyd -d -x
+exec /usr/sbin/chronyd -u chrony -d -x
