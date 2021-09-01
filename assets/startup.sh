@@ -32,6 +32,10 @@ if [ -z "${NTP_SERVERS}" ]; then
   NTP_SERVERS="${DEFAULT_NTP}"
 fi
 
+if [ -z "${LOGLEVEL}" ]; then
+  LOGLEVEL=0 # Levels supported 0 (informational), 1 (warning), 2 (non-fatal error), and 3 (fatal error)
+fi
+
 IFS=","
 for N in $NTP_SERVERS; do
   # strip any quotes found before or after ntp server
@@ -49,4 +53,4 @@ done
 } >> ${CHRONY_CONF_FILE}
 
 ## startup chronyd in the foreground
-exec /usr/sbin/chronyd -u chrony -d -x
+exec /usr/sbin/chronyd -u chrony -d -x -L $LOGLEVEL
