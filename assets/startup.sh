@@ -32,8 +32,16 @@ if [ -z "${NTP_SERVERS}" ]; then
   NTP_SERVERS="${DEFAULT_NTP}"
 fi
 
-if [ -z "${LOGLEVEL}" ]; then
-  LOGLEVEL=0 # Levels supported 0 (informational), 1 (warning), 2 (non-fatal error), and 3 (fatal error)
+# LOG_LEVEL environment variable is not present, so populate with chrony default (0)
+# chrony log levels: 0 (informational), 1 (warning), 2 (non-fatal error) and 3 (fatal error)
+if [ -z "${LOG_LEVEL}" ]; then
+  LOG_LEVEL=0
+else
+  # confirm log level is between 0-3, since these are the only log levels supported
+  if [ "${LOG_LEVEL}" -gt 3 ]; then
+    # level outside of supported range, let's set to default (0)
+    LOG_LEVEL=0
+  fi
 fi
 
 IFS=","
@@ -53,4 +61,4 @@ done
 } >> ${CHRONY_CONF_FILE}
 
 ## startup chronyd in the foreground
-exec /usr/sbin/chronyd -u chrony -d -x -L $LOGLEVEL
+exec /usr/sbin/chronyd -u chrony -d -x -L ${LOG_LEVEL}

@@ -15,4 +15,4 @@ services:
       - /var/lib/chrony:rw,mode=1750
     environment:
       - NTP_SERVERS=time.cloudflare.com
-      - LOGLEVEL=0
+      - LOG_LEVEL=0
