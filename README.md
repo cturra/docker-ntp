@@ -116,6 +116,19 @@ servers.
  * https://www.advtimesync.com/docs/manual/stratum1.html
 
 
+## Logging
+
+By default, this project logs informational messages to stdout, which can be helpful when running the
+ntp service. If you'd like to change the level of log verbosity, pass the `LOG_LEVEL` environment
+variable to the container, specifying the level (`#`) when you first start it. This option matches
+the chrony `-L` option, which support the following levels can to specified: 0 (informational), 1
+(warning), 2 (non-fatal error), and 3 (fatal error).
+
+Feel free to check out the project documentation for more information at:
+
+ * https://chrony.tuxfamily.org/doc/4.1/chronyd.html
+
+
 ## Testing your NTP Container
 
 From any machine that has `ntpdate` you can query your new NTP container with the follow
