@@ -26,6 +26,11 @@ fi
   echo "# time servers provided by NTP_SERVER environment variables."
 } > ${CHRONY_CONF_FILE}
 
+# If we set a BIND_ADDRESS env variable, set it in the config.
+if [ -z "${BIND_ADDRESS}" ]; then
+  echo "bindaddress ${BIND_ADDRESS}" > ${CHRONY_CONF_FILE}
+fi
+
 
 # NTP_SERVERS environment variable is not present, so populate with default server
 if [ -z "${NTP_SERVERS}" ]; then
