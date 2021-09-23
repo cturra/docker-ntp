@@ -27,8 +27,9 @@ fi
 } > ${CHRONY_CONF_FILE}
 
 # If we set a BIND_ADDRESS env variable, set it in the config.
-if [ -z "${BIND_ADDRESS}" ]; then
-  echo "bindaddress ${BIND_ADDRESS}" > ${CHRONY_CONF_FILE}
+if [[ $BIND_ADDRESS ]]; then
+  echo "Setting bind address to: ${BIND_ADDRESS}"
+  echo "bindaddress ${BIND_ADDRESS}" >> ${CHRONY_CONF_FILE}
 fi
 
 
