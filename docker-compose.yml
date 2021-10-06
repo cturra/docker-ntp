@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   ntp:
-    build: .
+#    build: .
     image: cturra/ntp:latest
     container_name: ntp
     restart: always
