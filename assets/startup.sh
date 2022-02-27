@@ -47,7 +47,18 @@ fi
 IFS=","
 for N in $NTP_SERVERS; do
   # strip any quotes found before or after ntp server
-  echo "server "${N//\"}" iburst" >> ${CHRONY_CONF_FILE}
+  N_CLEANED=${N//\"}
+
+  # check if ntp server has a 127.0.0.0/8 address (RFC3330) indicating it's
+  # the local system clock
+  if [[ "${N_CLEANED}" == *"127\."* ]]; then
+    echo "server "${N_CLEANED} >> ${CHRONY_CONF_FILE}
+    echo "local stratum 10"    >> ${CHRONY_CONF_FILE}
+
+  # found external time servers
+  else
+    echo "server "${N_CLEANED}" iburst" >> ${CHRONY_CONF_FILE}
+  fi
 done
 
 # final bits for the config file
