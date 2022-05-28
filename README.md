@@ -40,7 +40,7 @@ $> docker run --name=ntp            \
               --publish=123:123/udp \
               cturra/ntp
 
-# OR run ntp with higher security (default behaviour of run.sh and docker-compose).
+# OR run ntp with higher security
 $> docker run --name=ntp                           \
               --restart=always                     \
               --detach                             \
@@ -56,24 +56,34 @@ $> docker run --name=ntp                           \
 ### With Docker Compose
 
 Using the docker-compose.yml file included in this git repo, you can build the container yourself (should you choose to).
-*Note: this docker-compose files uses the `3.4` compose format, which requires Docker Engine release 17.09.0+
+*Note: this docker-compose files uses the `3.9` compose format, which requires Docker Engine release 19.03.0+
 
 ```
-# pull from docker hub
-$> docker pull cturra/ntp
-
-# build ntp
-$> docker-compose build ntp
-
 # run ntp
-$> docker-compose up -d ntp
+$> docker compose up -d ntp
 
 # (optional) check the ntp logs
-$> docker-compose logs ntp
+$> docker compose logs ntp
 ```
 
 
-### From a CLI
+### With Docker Swarm
+
+*(These instructions assume you already have a swarm)*
+
+```
+# deploy ntp stack to the swarm
+$> docker stack deploy -c docker-compose.yml cturra
+
+# check that service is running
+$> docker stack services cturra
+
+# (optional) view the ntp logs
+$> docker service logs -f cturra_ntp
+```
+
+
+### From a Local command line
 
 Using the vars file in this git repo, you can update any of the variables to reflect your
 environment. Once updated, simply execute the build then run scripts.
