@@ -11,7 +11,10 @@ LABEL documentation="https://github.com/cturra/docker-ntp"
 RUN apk add --no-cache chrony
 
 # script to configure/startup chrony (ntp)
-COPY assets/startup.sh /opt/startup.sh
+COPY assets/startup.sh /opt/ntp_startup.sh
+
+# Custom startup script
+COPY start_container.sh /opt/start_container.sh
 
 # ntp port
 EXPOSE 123/udp
@@ -20,4 +23,4 @@ EXPOSE 123/udp
 HEALTHCHECK CMD chronyc tracking || exit 1
 
 # start chronyd in the foreground
-ENTRYPOINT [ "/bin/sh", "/opt/startup.sh" ]
+ENTRYPOINT [ "/bin/sh", "/opt/start_container.sh" ]
