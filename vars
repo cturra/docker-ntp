@@ -13,6 +13,9 @@ CONTAINER_NAME="ntp"
 # NTP_SERVERS="time1.google.com,time2.google.com,time3.google.com,time4.google.com"
 NTP_SERVERS="time.cloudflare.com"
 
+# (optional) turn on noclientlog option
+NOCLIENTLOG=false
+
 # (optional) define chrony log level to use
 # default: 0
 # options: 0 (informational), 1 (warning), 2 (non-fatal error), and 3 (fatal error)

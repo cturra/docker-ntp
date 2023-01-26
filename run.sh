@@ -17,6 +17,7 @@ function start_container() {
               --restart=always                     \
               --publish=123:123/udp                \
               --env=NTP_SERVERS=${NTP_SERVERS}     \
+	      --env=NOCLIENTLOG=${NOCLIENTLOG}     \
               --env=LOG_LEVEL=${LOG_LEVEL}         \
               --read-only=true                     \
               --tmpfs=/etc/chrony:rw,mode=1750     \
