@@ -51,7 +51,7 @@ for N in $NTP_SERVERS; do
 
   # check if ntp server has a 127.0.0.0/8 address (RFC3330) indicating it's
   # the local system clock
-  if [[ "${N_CLEANED}" == *"127\."* ]]; then
+  if [[ "${N_CLEANED}" == "127\."* ]]; then
     echo "server "${N_CLEANED} >> ${CHRONY_CONF_FILE}
     echo "local stratum 10"    >> ${CHRONY_CONF_FILE}
 
@@ -66,7 +66,9 @@ done
   echo
   echo "driftfile /var/lib/chrony/chrony.drift"
   echo "makestep 0.1 3"
-  echo "rtcsync"
+  if [ "${NOCLIENTLOG}" = true ]; then
+    echo "noclientlog"
+  fi
   echo
   echo "allow all"
 } >> ${CHRONY_CONF_FILE}
