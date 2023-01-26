@@ -129,6 +129,18 @@ servers.
  * https://www.advtimesync.com/docs/manual/stratum1.html
 
 
+## Chronyd Options
+
+### No Client Log (noclientlog)
+
+This is optional and not enabled by default. If you provide the `NOCLIENTLOG=true` envivonrment variable,
+chrony will be configured to:
+
+> Specifies that client accesses are not to be logged. Normally they are logged, allowing statistics to
+> be reported using the clients command in chronyc. This option also effectively disables server support
+> for the NTP interleaved mode.
+
+
 ## Logging
 
 By default, this project logs informational messages to stdout, which can be helpful when running the
