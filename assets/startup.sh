@@ -1,6 +1,7 @@
 #!/bin/sh
 
 DEFAULT_NTP="time.cloudflare.com"
+DEFAULT_EXTRA=""
 CHRONY_CONF_FILE="/etc/chrony/chrony.conf"
 
 # confirm correct permissions on chrony run directory
@@ -32,6 +33,11 @@ if [ -z "${NTP_SERVERS}" ]; then
   NTP_SERVERS="${DEFAULT_NTP}"
 fi
 
+# CHRONY_EXTRA environment variable is not present, so populate with default server
+if [ -z "${CHRONY_EXTRA}" ]; then
+  CHRONY_EXTRA="${DEFAULT_EXTRA}"
+fi
+
 # LOG_LEVEL environment variable is not present, so populate with chrony default (0)
 # chrony log levels: 0 (informational), 1 (warning), 2 (non-fatal error) and 3 (fatal error)
 if [ -z "${LOG_LEVEL}" ]; then
@@ -59,6 +65,18 @@ for N in $NTP_SERVERS; do
   else
     echo "server "${N_CLEANED}" iburst" >> ${CHRONY_CONF_FILE}
   fi
+done
+
+{
+  echo
+  echo "# Extra config provided by CHRONY_EXTRA environment variables."
+} >> ${CHRONY_CONF_FILE}
+IFS=","
+for N in $CHRONY_EXTRA; do
+  # strip any quotes found before or after ntp server
+  N_CLEANED=${N//\"}
+
+  echo ${N_CLEANED} >> ${CHRONY_CONF_FILE}
 done
 
 # final bits for the config file

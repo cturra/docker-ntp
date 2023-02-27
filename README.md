@@ -120,6 +120,9 @@ NTP_SERVERS="ntp1.aliyun.com,ntp2.aliyun.com,ntp3.aliyun.com,ntp4.aliyun.com"
 
 # local (offline)
 NTP_SERVER="127.127.1.1"
+
+# ptp source (pass device to container)
+CHRONY_EXTRA=refclock PHC /dev/ptp0
 ```
 
 If you're interested in a public list of stratum 1 servers, you can have a look at the following list.
