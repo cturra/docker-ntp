@@ -4,7 +4,7 @@
 # of these to be appropriate for your environment.
 #
 
-IMAGE_NAME="cturra/ntp"
+IMAGE_NAME="wattsup/ntp"
 CONTAINER_NAME="ntp"
 
 # (optional) define ntp server(s) to use
@@ -23,3 +23,8 @@ LOG_LEVEL=0
 
 # (optional) additional docker run options you may want
 DOCKER_OPTS=""
+
+# (optional) define additional chrony config
+# Each line must: be comma deliminated
+# CHRONY_EXTRA="# Set reference clock to PTP source,refclock PHC /dev/ptp0 offset 0"
+CHRONY_EXTRA=""

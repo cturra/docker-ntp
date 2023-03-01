@@ -19,6 +19,7 @@ function start_container() {
               --env=NTP_SERVERS=${NTP_SERVERS}     \
 	      --env=NOCLIENTLOG=${NOCLIENTLOG}     \
               --env=LOG_LEVEL=${LOG_LEVEL}         \
+              --env=CHRONY_EXTRA=${CHRONY_EXTRA}         \
               --read-only=true                     \
               --tmpfs=/etc/chrony:rw,mode=1750     \
               --tmpfs=/run/chrony:rw,mode=1750     \

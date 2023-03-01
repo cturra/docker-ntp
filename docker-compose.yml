@@ -3,12 +3,15 @@ version: '3.9'
 services:
   ntp:
     build: .
-    image: cturra/ntp:latest
+    image: wattsup/ntp:latest
     container_name: ntp
     restart: always
     ports:
       - 123:123/udp
+    devices:
+      - "/dev/ptp0:/dev/ptp0"
     environment:
       - NTP_SERVERS=time.cloudflare.com
       - LOG_LEVEL=0
+      - CHRONY_EXTRA=refclock PHC /dev/ptp0 offset 0
 #     - NOCLIENTLOG=true
