@@ -1,18 +1,20 @@
 ## About this container
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/cturra/ntp.svg?logo=docker&label=pulls&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://hub.docker.com/r/cturra/ntp/)
-[![Docker Stars](https://img.shields.io/docker/stars/cturra/ntp.svg?logo=docker&label=stars&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://hub.docker.com/r/cturra/ntp/)
-[![GitHub Stars](https://img.shields.io/github/stars/cturra/docker-ntp.svg?logo=github&label=stars&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://github.com/cturra/docker-ntp)
-[![Apache licensed](https://img.shields.io/badge/license-Apache-blue.svg?logo=apache&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://raw.githubusercontent.com/cturra/docker-ntp/master/LICENSE)
+[![Docker Pulls](https://img.shields.io/docker/pulls/wattsup314/ntp.svg?logo=docker&label=pulls&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://hub.docker.com/r/wattsup314/ntp/)
+[![Docker Stars](https://img.shields.io/docker/stars/wattsup314/ntp.svg?logo=docker&label=stars&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://hub.docker.com/r/wattsup314/ntp/)
+[![GitHub Stars](https://img.shields.io/github/stars/wattsup/docker-ntp.svg?logo=github&label=stars&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://github.com/wattsup/docker-ntp)
+[![Apache licensed](https://img.shields.io/badge/license-Apache-blue.svg?logo=apache&style=for-the-badge&color=0099ff&logoColor=ffffff)](https://raw.githubusercontent.com/wattsup/docker-ntp/master/LICENSE)
 
 This container runs [chrony](https://chrony.tuxfamily.org/) on [Alpine Linux](https://alpinelinux.org/).
+
+This is a fork of [cturra/ntp](https://github.com/cturra/docker-ntp) with ability to add extra config lines to chrony.conf.
 
 [chrony](https://chrony.tuxfamily.org) is a versatile implementation of the Network Time Protocol (NTP). It can synchronise the system clock with NTP servers, reference clocks (e.g. GPS receiver), and manual input using wristwatch and keyboard. It can also operate as an NTPv4 (RFC 5905) server and peer to provide a time service to other computers in the network.
 
 
 ## Supported Architectures
 
-Architectures officially supported by this Docker container. Simply pulling this container from [Docker Hub](https://hub.docker.com/r/cturra/ntp) should retrieve the correct image for your architecture.
+Architectures officially supported by this Docker container. Simply pulling this container from [Docker Hub](https://hub.docker.com/r/wattsup314/ntp) should retrieve the correct image for your architecture.
 
 ![Linux x86-64](https://img.shields.io/badge/linux/amd64-green?style=flat-square)
 ![ARMv8 64-bit](https://img.shields.io/badge/linux/arm64-green?style=flat-square)
@@ -31,14 +33,14 @@ Pull and run -- it's this simple.
 
 ```
 # pull from docker hub
-$> docker pull cturra/ntp
+$> docker pull wattsup314/ntp
 
 # run ntp
 $> docker run --name=ntp            \
               --restart=always      \
               --detach              \
               --publish=123:123/udp \
-              cturra/ntp
+              wattsup314/ntp
 
 # OR run ntp with higher security
 $> docker run --name=ntp                           \
@@ -49,7 +51,7 @@ $> docker run --name=ntp                           \
               --tmpfs=/etc/chrony:rw,mode=1750     \
               --tmpfs=/run/chrony:rw,mode=1750     \
               --tmpfs=/var/lib/chrony:rw,mode=1750 \
-              cturra/ntp
+              wattsup314/ntp
 ```
 
 
@@ -73,13 +75,13 @@ $> docker compose logs ntp
 
 ```
 # deploy ntp stack to the swarm
-$> docker stack deploy -c docker-compose.yml cturra
+$> docker stack deploy -c docker-compose.yml wattsup314
 
 # check that service is running
-$> docker stack services cturra
+$> docker stack services wattsup314
 
 # (optional) view the ntp logs
-$> docker service logs -f cturra_ntp
+$> docker service logs -f wattsup314_ntp
 ```
 
 
@@ -120,6 +122,9 @@ NTP_SERVERS="ntp1.aliyun.com,ntp2.aliyun.com,ntp3.aliyun.com,ntp4.aliyun.com"
 
 # local (offline)
 NTP_SERVER="127.127.1.1"
+
+# ptp source (pass device to container)
+CHRONY_EXTRA=refclock PHC /dev/ptp0
 ```
 
 If you're interested in a public list of stratum 1 servers, you can have a look at the following list.
@@ -242,4 +247,4 @@ Like any host on your network, simply use your preferred ntp client to pull the 
 the running ntp container on your container host.
 
 ---
-<a href="https://www.buymeacoffee.com/cturra" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+<a href="https://www.buymeacoffee.com/wattsup314" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>

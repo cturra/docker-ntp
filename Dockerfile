@@ -3,7 +3,7 @@ FROM alpine:latest
 ARG BUILD_DATE
 
 # first, a bit about this container
-LABEL build_info="WattsUp/docker-ntp build-date:- ${BUILD_DATE}"
+LABEL build_info="wattsup314/docker-ntp build-date:- ${BUILD_DATE}"
 LABEL maintainer="Bradley Davis <me@bradleydavis.tech>"
 LABEL documentation="https://github.com/WattsUp/docker-ntp"
 
