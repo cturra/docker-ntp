@@ -8,7 +8,7 @@ LABEL maintainer="Chris Turra <cturra@gmail.com>"
 LABEL documentation="https://github.com/cturra/docker-ntp"
 
 # install chrony
-RUN apk add --no-cache chrony
+RUN apk add --no-cache chrony tzdata
 
 # script to configure/startup chrony (ntp)
 COPY assets/startup.sh /opt/startup.sh

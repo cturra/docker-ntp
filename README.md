@@ -154,6 +154,20 @@ Feel free to check out the project documentation for more information at:
  * https://chrony.tuxfamily.org/doc/4.1/chronyd.html
 
 
+## Setting your timezone
+
+By default the UTC timezone is used, however if you'd like to adjust your NTP server to be running in your
+local timezone, all you need to do is provide a `TZ` environment variable following the standard TZ data format.
+As an example, using `docker-compose.yaml`, that would be look like this if you were located in Vancouver, Canada:
+
+```yaml
+  ...
+  environment:
+    - TZ=America/Vancouver
+    ...
+```
+
+
 ## Testing your NTP Container
 
 From any machine that has `ntpdate` you can query your new NTP container with the follow
