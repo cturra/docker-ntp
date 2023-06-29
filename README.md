@@ -167,6 +167,17 @@ As an example, using `docker-compose.yaml`, that would be look like this if you 
     ...
 ```
 
+## Listening Interface
+
+In case the docker 'host' network is used, it is possible to select the interface in which the ntp service wil be 
+listening by setting up the variable `LISTENIFACE` and the interface name in `docker-compose.yaml` file:
+
+```yaml
+  ...
+  environment:
+    - LISTENIFACE=eth1
+    ...
+```
 
 ## Testing your NTP Container
 
