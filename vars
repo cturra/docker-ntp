@@ -13,6 +13,9 @@ CONTAINER_NAME="ntp"
 # NTP_SERVERS="time1.google.com,time2.google.com,time3.google.com,time4.google.com"
 NTP_SERVERS="time.cloudflare.com"
 
+# Enable NTS in the chronyd configuration file
+ENABLE_NTS="yes"
+
 # (optional) turn on noclientlog option
 NOCLIENTLOG=false
 

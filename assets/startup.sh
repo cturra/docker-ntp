@@ -57,7 +57,11 @@ for N in $NTP_SERVERS; do
 
   # found external time servers
   else
-    echo "server "${N_CLEANED}" iburst" >> ${CHRONY_CONF_FILE}
+    if [[ "${ENABLE_NTS:-no}" = "yes" ]]; then
+      echo "server "${N_CLEANED}" iburst nts" >> ${CHRONY_CONF_FILE}
+    else
+      echo "server "${N_CLEANED}" iburst" >> ${CHRONY_CONF_FILE}
+    fi
   fi
 done
 
