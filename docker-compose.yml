@@ -11,5 +11,6 @@ services:
     environment:
       - NTP_SERVERS=time.cloudflare.com
       - LOG_LEVEL=0
-#      - TZ=America/Vancouver        
+#      - TZ=America/Vancouver
 #      - NOCLIENTLOG=true
+#      - ENABLE_NTS=true
