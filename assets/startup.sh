@@ -57,7 +57,11 @@ for N in $NTP_SERVERS; do
 
   # found external time servers
   else
-    echo "server "${N_CLEANED}" iburst" >> ${CHRONY_CONF_FILE}
+    if [[ "${ENABLE_NTS:-false}" = true ]]; then
+      echo "server "${N_CLEANED}" iburst nts" >> ${CHRONY_CONF_FILE}
+    else
+      echo "server "${N_CLEANED}" iburst" >> ${CHRONY_CONF_FILE}
+    fi
   fi
 done
 
@@ -66,7 +70,7 @@ done
   echo
   echo "driftfile /var/lib/chrony/chrony.drift"
   echo "makestep 0.1 3"
-  if [ "${NOCLIENTLOG}" = true ]; then
+  if [ "${NOCLIENTLOG:-false}" = true ]; then
     echo "noclientlog"
   fi
   echo
