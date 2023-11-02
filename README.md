@@ -181,6 +181,11 @@ option to the container to enable it. As an example, using `docker-compose.yaml`
     ...
 ```
 
+If any of the `NTP_SERVERS` you have configured does not support NTS, you will see a message like the
+following during startup:
+
+> NTS-KE session with 164.67.62.194:4460 (tick.ucla.edu) timed out
+
 
 ## Testing your NTP Container
 
