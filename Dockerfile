@@ -17,7 +17,7 @@ COPY assets/startup.sh /opt/startup.sh
 EXPOSE 123/udp
 
 # let docker know how to test container health
-HEALTHCHECK CMD chronyc tracking || exit 1
+HEALTHCHECK CMD chronyc -n tracking || exit 1
 
 # start chronyd in the foreground
 ENTRYPOINT [ "/bin/sh", "/opt/startup.sh" ]
