@@ -119,7 +119,7 @@ NTP_SERVERS="time1.google.com,time2.google.com,time3.google.com,time4.google.com
 NTP_SERVERS="ntp1.aliyun.com,ntp2.aliyun.com,ntp3.aliyun.com,ntp4.aliyun.com"
 
 # local (offline)
-NTP_SERVER="127.127.1.1"
+NTP_SERVERS="127.127.1.1"
 ```
 
 If you're interested in a public list of stratum 1 servers, you can have a look at the following list.
