@@ -16,6 +16,10 @@ NTP_SERVERS="time.cloudflare.com"
 # (optional) enable NTS in the chronyd configuration file
 ENABLE_NTS=false
 
+# (optional) provide SSL and key to enable NTS server in chronyd
+NTS_CRT=""
+NTS_KEY=""
+
 # (optional) turn on noclientlog option
 NOCLIENTLOG=false
 
