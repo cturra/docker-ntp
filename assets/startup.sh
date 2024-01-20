@@ -65,6 +65,20 @@ for N in $NTP_SERVERS; do
   fi
 done
 
+# Enable NTS server if vars present
+if [ "${NTS_CRT:+1}${NTS_KEY:+1}" == 1 ]; then
+  # Only one variable was provided, when either both or none are required
+  # Exit with error due to invalid config
+  echo -e "ERROR: Both 'NTS_CRT' & 'NTS_KEY' are required vars when enabling NTS for chronyd. Currently have:\n* NTS_CRT=${NTS_CRT}\n* NTS_KEY=${NTS_KEY}"
+  exit 1
+fi
+
+if [ "${NTS_CRT:+1}${NTS_KEY:+1}" == 11 ]; then
+  # Both vars present, so inject into config
+  echo "ntsservercert ${NTS_CRT}" >> ${CHRONY_CONF_FILE}
+  echo "ntsserverkey ${NTS_KEY}" >> ${CHRONY_CONF_FILE}
+fi
+
 # final bits for the config file
 {
   echo

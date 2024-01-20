@@ -186,6 +186,14 @@ following during startup:
 
 > NTS-KE session with 164.67.62.194:4460 (tick.ucla.edu) timed out
 
+To enable NTS within the chronyd server for clients, you can provide an SSL certificate and matching private key with the `NTS_CRT` and `NTS_KEY` options, respectively:
+
+```yaml
+  ...
+  environment:
+    - NTS_CRT="/path/to/ssl.crt"
+    - NTS_KEY="/path/to/private.key"
+```
 
 ## Testing your NTP Container
 
