@@ -151,7 +151,7 @@ the chrony `-L` option, which support the following levels can to specified: 0 (
 
 Feel free to check out the project documentation for more information at:
 
- * https://chrony-project.org/doc/4.1/chronyd.html
+ * https://chrony-project.org/documentation.html
 
 
 ## Setting your timezone
