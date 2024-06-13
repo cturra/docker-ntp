@@ -68,6 +68,9 @@ done
 # final bits for the config file
 {
   echo
+  if [ ! -z ${LISTENIFACE+x} ]
+    echo "binddevice $LISTENIFACE"
+  fi
   echo "driftfile /var/lib/chrony/chrony.drift"
   echo "makestep 0.1 3"
   if [ "${NOCLIENTLOG:-false}" = true ]; then
