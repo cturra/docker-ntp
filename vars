@@ -26,3 +26,6 @@ LOG_LEVEL=0
 
 # (optional) additional docker run options you may want
 DOCKER_OPTS=""
+
+# (optional) allow remote access to chronyd
+ALLOW_REMOTE_MON=false
