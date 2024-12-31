@@ -21,3 +21,5 @@ HEALTHCHECK CMD chronyc -n tracking || exit 1
 
 # start chronyd in the foreground
 ENTRYPOINT [ "/bin/sh", "/opt/startup.sh" ]
+
+USER 1001
