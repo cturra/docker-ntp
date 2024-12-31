@@ -1,0 +1,121 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ntp-rootless
+  namespace: ntp
+  labels:
+    app: ntp-rootless
+spec:
+  replicas: 1 # 2
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: ntp-rootless
+  template:
+    metadata:
+      labels:
+        app: ntp-rootless
+    spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        runAsNonRoot: true
+      hostname: ntp-rootless
+      restartPolicy: Always
+      automountServiceAccountToken: false
+      serviceAccountName: ntp
+      # ndots required because of alpine base image
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+      containers:
+        - image: ""
+          imagePullPolicy: IfNotPresent
+          name: ntp-rootless
+          ports:
+            - containerPort: 12345
+              name: ntp
+              protocol: UDP
+          securityContext:
+            runAsUser: 1001 # Not Needed for OpenShift
+            runAsGroup: 1001 # Not Needed for OpenShift
+            privileged: false
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            requests:
+              ephemeral-storage: "15Mi"
+              memory: "16Mi"
+              cpu: "5m"
+            limits:
+              ephemeral-storage: "15Mi"
+              memory: "32Mi"
+              cpu: "50m"
+          env:
+            - name: SKIP_CHOWN
+              value: "true"
+            - name: PORT
+              value: "12345"
+            - name: CMDPORT
+              value: "10323"
+            - name: ENABLE_NTS
+              value: "true"
+          volumeMounts:
+            - name: ntp-config
+              mountPath: /etc/chrony/
+            - name: ntp-lib
+              mountPath: /var/lib/chrony
+            - name: ntp-run
+              mountPath: /run/chrony
+            - name: ntp-var-run
+              mountPath: /var/run/chrony
+          livenessProbe:
+            exec: # /usr/bin/chronyc -h 127.0.0.1 -p 10323 sources
+              command:
+                - /usr/bin/chronyc
+                - -h
+                - 127.0.0.1
+                - -p
+                - "10323"
+                - sources
+            initialDelaySeconds: 45
+            timeoutSeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            failureThreshold: 5
+          readinessProbe:
+            exec: # /usr/bin/chronyc -h 127.0.0.1 -p 10323 sources
+              command:
+                - /usr/bin/chronyc
+                - -h
+                - 127.0.0.1
+                - -p
+                - "10323"
+                - sources
+            initialDelaySeconds: 45
+            timeoutSeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            failureThreshold: 5
+      volumes:
+        - name: ntp-config
+          emptyDir:
+            sizeLimit: 10Mi
+        - name: ntp-lib
+          emptyDir:
+            sizeLimit: 10Mi
+        - name: ntp-run
+          emptyDir:
+            sizeLimit: 10Mi
+        - name: ntp-var-run
+          emptyDir:
+            sizeLimit: 10Mi
