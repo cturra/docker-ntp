@@ -176,7 +176,7 @@ option to the container to enable it. As an example, using `docker-compose.yaml`
 ```yaml
   ...
   environment:
-    - NTP_SERVER=time.cloudflare.com
+    - NTP_SERVERS=time.cloudflare.com
     - ENABLE_NTS=true
     ...
 ```
