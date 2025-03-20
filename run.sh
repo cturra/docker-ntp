@@ -20,6 +20,7 @@ function start_container() {
 	      --env=ENABLE_NTS=${ENABLE_NTS}       \
 	      --env=NOCLIENTLOG=${NOCLIENTLOG}     \
               --env=LOG_LEVEL=${LOG_LEVEL}         \
+              --env=ALLOW_REMOTE_MON=${ALLOW_REMOTE_MON}  \
               --read-only=true                     \
               --tmpfs=/etc/chrony:rw,mode=1750     \
               --tmpfs=/run/chrony:rw,mode=1750     \

@@ -140,6 +140,12 @@ chrony will be configured to:
 > be reported using the clients command in chronyc. This option also effectively disables server support
 > for the NTP interleaved mode.
 
+### Remote monitoring
+
+If you'd like to enable remote monitoring, you can pass the environment variable `ALLOW_REMOTE_MON` set to
+`true` to the container. This will let you run `chronyc` commands from another host.
+
+You can use this to check the status of the NTP server without the need to run docker commands.
 
 ## Logging
 

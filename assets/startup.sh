@@ -65,6 +65,17 @@ for N in $NTP_SERVERS; do
   fi
 done
 
+# Remote access to the chrony server
+if [ "${ALLOW_REMOTE_MON:-false}" = true ]; then
+  {
+    echo
+    echo "# allow remote monitoring"
+    echo "cmdallow all"
+    echo "bindcmdaddress 0.0.0.0"
+    echo "bindcmdaddress ::"
+  } >> ${CHRONY_CONF_FILE}
+fi
+
 # final bits for the config file
 {
   echo

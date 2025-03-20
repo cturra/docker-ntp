@@ -14,3 +14,4 @@ services:
 #      - TZ=America/Vancouver
 #      - NOCLIENTLOG=true
 #      - ENABLE_NTS=true
+#      - ALLOW_REMOTE_MON=true
